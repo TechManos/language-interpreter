@@ -17,6 +17,7 @@
     <ion-searchbar
       #searchbar
       placeholder="Enter Slovak word to explain"
+      autocapitalize="none"
       [(ngModel)]="searchQuery"
       (keydown.enter)="onEnterPressed($event)"
     ></ion-searchbar>
