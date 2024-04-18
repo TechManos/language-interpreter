@@ -1,0 +1,7 @@
+{
+  "name": "language-interpreter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

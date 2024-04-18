@@ -1,0 +1,116 @@
+<ion-content class="ion-padding">
+  <form (ngSubmit)="logIn()" [formGroup]="credentialsFormGroup">
+    <ion-segment value="login" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="login">
+        <ion-label class="ion-text-wrap">{{ 'Login' }}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="register">
+        <ion-label class="ion-text-wrap">{{ 'Register' }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div *ngIf="authView === 'login'">
+      <div class="ion-margin-bottom">
+        <ion-input
+          type="email"
+          fill="solid"
+          mode="md"
+          [placeholder]="'Email'"
+          formControlName="email"
+          (keyup.enter)="loginOnEnterPressed()"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(email?.dirty || email?.touched) && email?.errors"
+          >{{ 'error.message.email.invalid' }}
+        </ion-note>
+      </div>
+
+      <div class="ion-margin-bottom">
+        <ion-input
+          fill="solid"
+          mode="md"
+          type="password"
+          [placeholder]="'Password'"
+          formControlName="password"
+          (keyup.enter)="loginOnEnterPressed()"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(password?.dirty || password?.touched) && password?.errors"
+          >{{ 'error.message.password.invalid' }}
+        </ion-note>
+      </div>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        [disabled]="
+          !credentialsFormGroup.get('email')?.valid ||
+          !credentialsFormGroup.get('password')?.valid
+        "
+        #loginBtn
+        >{{ 'Login' }}
+      </ion-button>
+    </div>
+
+    <div *ngIf="authView === 'register'">
+      <div class="ion-margin-bottom">
+        <ion-input
+          fill="solid"
+          mode="md"
+          type="email"
+          [placeholder]="'Enter valid Email address'"
+          formControlName="email"
+          (keyup.enter)="signUp()"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(email?.dirty || email?.touched) && email?.errors"
+          >{{ 'error.message.email.invalid' }}
+        </ion-note>
+      </div>
+
+      <div class="ion-margin-bottom">
+        <ion-input
+          fill="solid"
+          mode="md"
+          type="password"
+          [placeholder]="'Password must be at least 6 characters long'"
+          formControlName="password"
+          (keyup.enter)="signUp()"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(password?.dirty || password?.touched) && password?.errors"
+          >{{ 'error.message.password.invalid' }}
+        </ion-note>
+      </div>
+
+      <div class="ion-margin-bottom">
+        <ion-input
+          fill="solid"
+          mode="md"
+          [placeholder]="'Enter desired username'"
+          formControlName="username"
+          (keyup.enter)="signUp()"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(username?.dirty || username?.touched) && username?.errors"
+          >{{ 'error.message.username.invalid' }}
+        </ion-note>
+      </div>
+
+      <ion-button
+        type="button"
+        expand="block"
+        color="secondary"
+        (click)="signUp()"
+        [disabled]="!credentialsFormGroup.valid"
+        #signUpBtn
+        >{{ 'Register' }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

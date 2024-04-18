@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "language-interpreter-77cf9": {
+      "hosting": {
+        "app": [
+          "language-interpreter-77cf9"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "language-interpreter-77cf9"
+  }
+}
